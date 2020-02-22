@@ -1,0 +1,16 @@
+FROM python:3.7-alpine
+
+MAINTAINER yuban10703 "2846021566@qq.com"  
+
+ENV LIBRARY_PATH=/lib:/usr/lib
+
+WORKDIR /app
+
+RUN apk add --no-cache --virtual tmp git gcc build-base libffi-dev tzdata && \
+	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+	git clone https://github.com/yjqiang/YjMonitor /app && \
+	pip install aiohttp==3.6.2 aiojobs==0.2.2 argon2-cffi==19.2.0 rsa==4.0 && \
+	apk del tmp && \
+	apk add --no-cache git
+CMD git pull && \
+	python server/run.py
