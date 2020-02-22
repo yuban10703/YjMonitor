@@ -41,3 +41,5 @@ docker run --rm -it \
   -p 8001:8001 \
   yuban10703/yjmonitor
 ```
+详细操作,emmmm
+https://yuban10703.xyz/archives/489
