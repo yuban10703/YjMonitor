@@ -1,0 +1,4 @@
+aiohttp==3.6.2 
+aiojobs==0.2.2 
+argon2-cffi==19.2.0 
+rsa==4.0
