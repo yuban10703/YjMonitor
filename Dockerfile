@@ -6,7 +6,8 @@ ENV LIBRARY_PATH=/lib:/usr/lib
 
 WORKDIR /app
 
-RUN apk add --no-cache --virtual bianyi git gcc build-base libffi-dev && \
+RUN apk add --no-cache --virtual bianyi git gcc build-base libffi-dev tzdata && \
+	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
 	git clone https://github.com/yjqiang/YjMonitor /app && \
 	pip install aiohttp==3.6.2 aiojobs==0.2.2 argon2-cffi==19.2.0 async-timeout==3.0.1 attrs==19.3.0 cffi==1.14.0 multidict==4.7.4 pampy==0.3.0 pyasn1==0.4.8 pycparser==2.19 rsa==4.0 toml==0.10.0 yarl==1.4.2 requests==2.21.0 idna==2.6 && \
 	python ctrl/key/create_key.py && \
