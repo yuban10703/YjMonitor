@@ -27,3 +27,13 @@ b站 上船风暴监控
 key
 -----------
 1. client、server、monitor部分(就是👆那几个部分)都需要 key (这里的 key 指 rsa 的 key)，key 存在***各自***的key文件里面，运行需要两对 key，分别是 super_admin_privkey.pem 与 super_admin_pubkey.pem 、 admin_privkey.pem 与 admin_pubkey.pem 。monitor 即子监控部分需要 admin_privkey.pem 用来推送，ctrl 部分需要 super_admin_privkey.pem 和 admin_privkey.pem 用来控制等，server 需要 super_admin_pubkey.pem 和 admin_pubkey.pem 来验证等。
+##### Docker in Linux
+
+```
+docker run --rm -it \
+  -v $(pwd)/user.sample.toml:/app/monitor/conf/user.toml \
+  -v $(pwd)/ctrl.sample.toml:/app/monitor/conf/ctrl.toml \
+  -p 8002:8002 \
+  -p 8001:8001 \
+  yuban10703/yjmonitor
+```
