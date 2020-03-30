@@ -1,0 +1,15 @@
+FROM python:3.8.1-alpine
+
+MAINTAINER yuban10703 "2846021566@qq.com"  
+
+ENV LIBRARY_PATH=/lib:/usr/lib
+
+WORKDIR /app
+
+RUN apk add --no-cache --virtual tmp git gcc build-base libffi-dev tzdata && \
+	cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+	git clone https://github.com/yjqiang/YjMonitor /app && \
+	pip install --no-cache-dir -r monitor/requirements.txt && \
+	apk del tmp && \
+	apk add --no-cache git
+CMD git pull && (python monitor/run_poll0.py&python monitor/run_poll1.py)
