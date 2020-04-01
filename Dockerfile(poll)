@@ -12,4 +12,4 @@ RUN apk add --no-cache --virtual tmp git gcc build-base libffi-dev tzdata && \
 	pip install --no-cache-dir -r monitor/requirements.txt && \
 	apk del tmp && \
 	apk add --no-cache git
-CMD git pull && (python monitor/run_poll0.py&python monitor/run_poll1.py)
+CMD git pull && pip install --no-cache-dir -r monitor/requirements.txt && (python monitor/run_poll0.py&python monitor/run_poll1.py)
